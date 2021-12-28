@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardns">
+<!-- 	<select id="list" parameterType="map" resultType="board">
+		select * from (select a.*,rowNum rn from( 
+			select * from board2 order by ref desc, re_step)a)
+				where rn between #{startRow} and #{endRow}
+	</select> -->
+	<select id="list" parameterType="board" resultType="board">
+		select * from (select a.*,rowNum rn from( 
+			select * from board2 
+			<!-- keyword에 데이터가 있으면 <where>는 안에 문장이 있으면 where 없으면 공란 -->
+		<where>
+			<!-- $는 변수 #은 데이터 #이 있으면 값문자인 경우 '값'에 인용부호가 붙는다 -->
+			<!-- mysql에서는 concat('%',#{keyword},'%') -->
+			<if test="keyword!=null and keyword!=''">
+				<if test="search=='subcon'">
+					subject like '%'||#{keyword}||'%' or
+					content like '%'||#{keyword}||'%'
+				</if>
+	<!-- 		search : search라는 속성명
+				${search} : search들어 있는 값 writer, subject, content -->
+				<if test="search!='subcon'">
+					${search} like '%'||#{keyword}||'%'
+				</if>
+			</if>
+		</where>			
+			order by ref desc, re_step)a)
+				where rn between #{startRow} and #{endRow}
+	</select>
+	<!-- configuration.xml에 등록된 객체는 생략 가능 -->
+	<select id="getTotal" parameterType="board" resultType="integer">
+		select count(*) from board2
+		<where>
+			<!-- $는 변수 #은 데이터 #이 있으면 값문자인 경우 '값'에 인용부호가 붙는다 -->
+			<!-- mysql에서는 concat('%',#{keyword},'%') -->
+			<!-- search는 문자 search ${search} search속성에 들어 있는 값
+			                  #{search}    "                을 문자로 표시(인용부호 추가) -->
+			<if test="keyword!=null and keyword!=''">
+				<if test="search=='subcon'">
+					subject like '%'||#{keyword}||'%' or
+					content like '%'||#{keyword}||'%'
+				</if>
+				<if test="search!='subcon'">
+					${search} like '%'||#{keyword}||'%'
+				</if>
+			</if>
+		</where>
+	</select>
+	<select id="select" parameterType="integer" resultType="board">
+		select * from board2 where num=#{num}
+	</select>
+	<select id="maxNum" resultType="integer">
+		<!-- ref와 num을 구분하기 위해서 -->
+		select nvl(max(num),0) + 1 from board2
+	</select>
+	<insert id="insert" parameterType="board">
+		<!-- <selectKey keyProperty="num" order="BEFORE" resultType="integer">
+			select nvl(max(num),0) + 1 from board2
+		</selectKey> -->
+		insert into board2 values (#{num},#{writer},#{subject},#{content},
+			#{email},0,#{password},#{ref},#{re_step},#{re_level},#{ip},
+			sysdate,'n')
+	</insert>
+	<update id="update" parameterType="board">
+		update board2 set subject=#{subject},writer=#{writer},email=#{email},
+			content=#{content} where num=#{num}
+	</update>
+	<update id="updateStep"  parameterType="board">
+		update board2 set re_step = re_step + 1 
+			where ref=#{ref} and re_step > #{re_step}
+	</update>
+	<update id="delete" parameterType="integer">
+		update board2 set del = 'y' where num=#{num}
+	</update>
+	<update id="updateReadcount" parameterType="integer">
+		update board2 set readcount = readcount + 1 where num=#{num}
+	</update>
+</mapper>
