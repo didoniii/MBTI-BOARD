@@ -16,14 +16,6 @@
 	</typeAliases>
 	
 	<mappers>
-		<mapper resource="mbti.xml"/>
-		<mapper resource="member.xml"/>
 		<mapper resource="mboard.xml"/>
-		<mapper resource="blikes.xml"/>
-		<mapper resource="breport.xml"/>
-		<mapper resource="qboard.xml"/>
-		<mapper resource="reply.xml"/>
-		<mapper resource="rlikes.xml"/>
-		<mapper resource="rreport.xml"/>
 	</mappers>
 </configuration>

@@ -22,6 +22,6 @@ public class Mboard {
     private int endRow;
     
     //검색용
-    private String keyword;
-    private String search;
+//    private String keyword;
+//    private String search;
 }

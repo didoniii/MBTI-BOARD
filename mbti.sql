@@ -6,7 +6,16 @@ create table mbti (
     mbti_count      NUMBER              not null
 );
 
+select * from mbti;
 
+-- MBTI 회원수 증가 시퀀스
+CREATE SEQUENCE mbti_count 
+INCREMENT by 1
+START WITH 1
+MINVALUE 1
+NOMAXVALUE
+NOCYCLE
+NOCACHE;
 
 
 drop table member cascade constraints;
