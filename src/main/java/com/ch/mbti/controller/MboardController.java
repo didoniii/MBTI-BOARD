@@ -12,7 +12,7 @@ import com.ch.mbti.service.PagingBean;
 
 @Controller
 public class MboardController {
-	@Autowired
+	@Autowired        
 	private MboardService mbs;
 	
 	@RequestMapping("mBoardList")
@@ -25,12 +25,9 @@ public class MboardController {
 		int endRow = startRow + rowPerPage - 1;
 		mboard.setStartRow(startRow);
 		mboard.setEndRow(endRow);
-		List<Mboard> mbList = mbs.list(mboard);
+		List<Mboard> mbList = mbs.mbList(mboard);
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 		model.addAttribute("mbList", mbList);
-		System.out.println("mbList : " + mbList);
-		model.addAttribute("mboard", mboard);
-		System.out.println("mboard : " + mboard);
 		model.addAttribute("pb", pb);
 		return "mBoard/mBoardList";
 	}
@@ -45,17 +42,33 @@ public class MboardController {
 	}
 	@RequestMapping ("mBoardInsert")
 	public String mBoardInsert (Mboard mboard, String pageNum, Model model) {
-		int result = 0 ;//입력실패
-		result = mbs.insert(mboard); //성공한 갯수
+		int result = 0 ;				//입력실패
+		result = mbs.insert(mboard); 	//입력성공한 갯수
 		model.addAttribute("result", result);
 		model.addAttribute("pageNum", pageNum);
-		model.addAttribute("mboard", mboard);
 		return "mBoard/mBoardInsert";
 	}
-	@RequestMapping ("mBoardContent")
-	public String mBoardContent(int mbo_no, Model model) {
-		Mboard mboard = mbs.select(mbo_no);
-		model.addAttribute("mboard", mboard);
-		return "mBoard/mBoardContent" ;
+	@RequestMapping ("mBoardView")
+	public String mBoardView(Mboard mboard, String pageNum, Model model) {
+		Mboard mboard2 = mbs.select(mboard.getMbo_no());
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("mboard", mboard2);
+		return "mBoard/mBoardView" ;
 	}
+	@RequestMapping("mBoardUpdateForm")
+	public String mBoardUpdateForm (int mbo_no, String pageNum, Model model) {
+		Mboard mboard = mbs.select(mbo_no);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("mboard", mboard);
+		return "mBoard/mBoardUpdateForm" ;
+	}
+	@RequestMapping("mBoardUpdate")
+	public String mBoardUpdate (Mboard mboard, String pageNum, Model model) {
+		int result = 0; 				//수정실패
+		result = mbs.update(mboard);	//수정된 갯수
+		model.addAttribute("result", result);
+		model.addAttribute("pageNum", pageNum);
+		return "mBoard/mBoardUpdate" ;
+	}
+	
 }

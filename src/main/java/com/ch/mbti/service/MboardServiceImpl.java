@@ -11,8 +11,8 @@ public class MboardServiceImpl implements MboardService {
 	@Autowired
 	private MboardDao mbd;
 	
-	public List<Mboard> list(Mboard mboard) {
-		return mbd.list(mboard);
+	public List<Mboard> mbList(Mboard mboard) {
+		return mbd.mbList(mboard);
 	}
 	public int getTotal(Mboard mboard) {
 		return mbd.getTotal(mboard);
@@ -26,5 +26,7 @@ public class MboardServiceImpl implements MboardService {
 	public Mboard select(int mbo_no) {
 		return mbd.select(mbo_no);
 	}
-	
+	public int update(Mboard mboard) {
+		return mbd.update(mboard);
+	}
 }
