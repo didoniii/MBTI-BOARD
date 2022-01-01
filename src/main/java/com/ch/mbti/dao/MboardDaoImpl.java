@@ -12,11 +12,11 @@ public class MboardDaoImpl implements MboardDao{
 	@Autowired
 	private SqlSessionTemplate sst;
 	
-	public List<Mboard> list(Mboard mboard) {
-		return sst.selectList("mboardns.mbList");
+	public List<Mboard> mbList(Mboard mboard) {
+		return sst.selectList("mboardns.mbList",mboard);
 	}
 	public int getTotal(Mboard mboard) {
-		return sst.selectOne("mboardns.getTotal");
+		return sst.selectOne("mboardns.getTotal",mboard);
 	}
 	public int insert(Mboard mboard) {
 		return sst.insert("mboardns.insert", mboard);
@@ -25,8 +25,9 @@ public class MboardDaoImpl implements MboardDao{
 		return sst.selectOne("mboardns.maxMbo_no");
 	}
 	public Mboard select(int mbo_no) {
-		return sst.selectOne("mboardns.select");
+		return sst.selectOne("mboardns.select",mbo_no);
 	}
-	
-	
+	public int update(Mboard mboard) {
+		return sst.update("mboardns.update", mboard);
+	}
 }

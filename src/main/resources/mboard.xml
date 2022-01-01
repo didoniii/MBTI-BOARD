@@ -6,7 +6,7 @@
 	<!-- 전체 MBTI 게시글 리스트-->
 	<select id="mbList" parameterType="mboard" resultType ="mboard">
 		select * from (select a.*, rowNum rn from(select * from m_board order by mbo_no desc)a)
-		where rn between #{startRow} and #{endRow}
+		 where rn between #{startRow} and #{endRow}
 	</select>
 	
 	<!-- 전체 MBTI 게시글 수 구하기-->
@@ -29,5 +29,11 @@
 	<select id="select" parameterType="int" resultType ="mboard">
 		select * from m_board where mbo_no=#{mbo_no}
 	</select>
+	
+	<!-- MBTI 게시글 수정-->
+	<insert id="update" parameterType="mboard">
+		update m_board set subject = #{subject}, content = #{content}, img = #{img}
+		where mbo_no = #{mbo_no}
+	</insert>
 	
 </mapper>
