@@ -12,8 +12,8 @@
 		<h2 class="title">게시글 수정</h2>
 		<form action = "mBoardUpdate.do" method="post" name= "frm">
 		<input type="hidden" name="pageNum" value="${pageNum}">
-		<input type="hidden" name="mbo_no" value="${mbo_no}">
-		<input type="hidden" name="id" value="jsun">
+		<input type="hidden" name="mbo_no" value="${mboard.mbo_no}">
+		<input type="hidden" name="id" value="${mboard.id }">
 			<table class="table">
 				<tr>
 					<th>MBTI</th><td>${mboard.mbti }</td>
@@ -29,7 +29,7 @@
 					<th>첨부파일</th><td><input type="file" name="img" value ="${mboard.img }"multiple="multiple">
 				</tr>
 				<tr>
-					<td colspan="2" align="center"><input type="submit" id="submit" class="btn btn-success" value="수정"></td>
+					<td colspan="2" align="center"><input type="submit" class="btn btn-warning" value="수정"></td>
 				</tr>
 			
 			</table>

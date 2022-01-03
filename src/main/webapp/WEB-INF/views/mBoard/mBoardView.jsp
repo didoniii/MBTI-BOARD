@@ -33,9 +33,11 @@
 				<td colspan="3">${mboard.img }${mboard.content }</td>
 			</tr>
 		</table>
-		<a href="mBoardList.do?pageNum=${pageNum }" class="btn btn-info">목록</a> <a
-			href="mBoardUpdateForm.do?mbo_no=${mboard.mbo_no }"
+		<a href="mBoardList.do?pageNum=${pageNum }" class="btn btn-info">목록</a> 
+		<a href="mBoardUpdateForm.do?mbo_no=${mboard.mbo_no }&pageNum=${pageNum}"
 			class="btn btn-warning">수정</a>
+		<a href="mBoardDelete.do?mbo_no=${mboard.mbo_no }&pageNum=${pageNum}"
+			class="btn btn-danger">삭제</a>
 	</div>
 </body>
 </html>
