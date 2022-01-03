@@ -30,4 +30,7 @@ public class MboardDaoImpl implements MboardDao{
 	public int update(Mboard mboard) {
 		return sst.update("mboardns.update", mboard);
 	}
+	public int delete(int mbo_no) {
+		return sst.delete("mboardns.delete", mbo_no);
+	}
 }

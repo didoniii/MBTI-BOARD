@@ -11,5 +11,6 @@ public interface MboardDao {
 	int maxMbo_no();
 	Mboard select(int mbo_no);
 	int update(Mboard mboard);
+	int delete(int mbo_no);
 	
 }

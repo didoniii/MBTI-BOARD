@@ -35,7 +35,6 @@ public class MboardController {
 		public String mBoardInsertForm (String pageNum, Model model) {
 			int mbo_no = 0;
 			mbo_no = mbs.maxMbo_no();
-			System.out.println("mbo_no : " + mbo_no);
 			model.addAttribute("pageNum", pageNum);
 			model.addAttribute("mbo_no", mbo_no);
 			return "mBoard/mBoardInsertForm";
@@ -60,6 +59,7 @@ public class MboardController {
 		Mboard mboard = mbs.select(mbo_no);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("mboard", mboard);
+		System.out.println("mbo_no : "+ mbo_no); 
 		return "mBoard/mBoardUpdateForm" ;
 	}
 	@RequestMapping("mBoardUpdate")
@@ -70,5 +70,12 @@ public class MboardController {
 		model.addAttribute("pageNum", pageNum);
 		return "mBoard/mBoardUpdate" ;
 	}
-	
+	@RequestMapping("mBoardDelete")
+	public String mBoardDelete (int mbo_no, String pageNum, Model model) {
+		int result = 0; 				//삭제실패
+		result = mbs.delete(mbo_no);	
+		model.addAttribute("result", result);
+		model.addAttribute("pageNum", pageNum);
+		return "mBoard/mBoardDelete" ;
+	}
 }

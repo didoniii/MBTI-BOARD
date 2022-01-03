@@ -26,14 +26,18 @@
 	</select>
 	
 	<!-- MBTI 게시글  상세보기-->
-	<select id="select" parameterType="int" resultType ="mboard">
+	<select id="select" parameterType="integer" resultType ="mboard">
 		select * from m_board where mbo_no=#{mbo_no}
 	</select>
 	
 	<!-- MBTI 게시글 수정-->
-	<insert id="update" parameterType="mboard">
-		update m_board set subject = #{subject}, content = #{content}, img = #{img}
-		where mbo_no = #{mbo_no}
-	</insert>
+	<update id="update" parameterType="mboard">
+		update m_board set subject=#{subject}, content=#{content}, img=#{img}
+		where mbo_no=#{mbo_no}
+	</update>
 	
+	<!-- MBTI 게시글 삭제-->
+	<update id="delete" parameterType="integer">
+		update m_board set del = 'y' where mbo_no=#{mbo_no}
+	</update>
 </mapper>

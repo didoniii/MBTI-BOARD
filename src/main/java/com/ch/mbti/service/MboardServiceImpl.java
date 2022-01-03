@@ -29,4 +29,7 @@ public class MboardServiceImpl implements MboardService {
 	public int update(Mboard mboard) {
 		return mbd.update(mboard);
 	}
+	public int delete(int mbo_no) {
+		return mbd.delete(mbo_no);
+	}
 }

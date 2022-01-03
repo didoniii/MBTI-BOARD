@@ -30,7 +30,7 @@
 					<tr>
 						<c:if test="${mboard.del == 'n' }">
 							<td>${mboard.mbo_no }</td>
-							<td><a href="mBoardView.do?mbo_no=${mboard.mbo_no }">${mboard.subject }</a></td>
+							<td><a href="mBoardView.do?mbo_no=${mboard.mbo_no }&pageNum=${pb.currentPage}">${mboard.subject }</a></td>
 							<td>${mboard.mbti }</td>
 							<td>${mboard.regdate }</td>
 							<td>${mboard.likes }</td>
