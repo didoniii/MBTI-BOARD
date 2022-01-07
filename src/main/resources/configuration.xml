@@ -4,18 +4,12 @@
 <configuration>
 	<typeAliases>
 		<!-- 			별명                                         실제 객체 -->
-		<!-- <typeAlias alias="mbti" type="com.ch.mbti.model.Mbti"/>
-		<typeAlias alias="member" type="com.ch.mbti.model.Member"/> -->
 		<typeAlias alias="mboard" type="com.ch.mbti.model.Mboard"/>
-		<!-- <typeAlias alias="blikes" type="com.ch.mbti.model.Blikes"/>
-		<typeAlias alias="breport" type="com.ch.mbti.model.Breport"/>
-		<typeAlias alias="qboard" type="com.ch.mbti.model.Qboard"/>
 		<typeAlias alias="reply" type="com.ch.mbti.model.Reply"/>
-		<typeAlias alias="rlikes" type="com.ch.mbti.model.Rlikes"/>
-		<typeAlias alias="rreport" type="com.ch.mbti.model.Rreport"/> -->
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mboard.xml"/>
+		<mapper resource="reply.xml"/>
 	</mappers>
 </configuration>
