@@ -8,7 +8,7 @@
 </head>
 <body>
 	<script type="text/javascript">
-		location.href = "mBoardList.do";
+		location.href = "replyList.do?mbo_no=1";
 	</script>
 </body>
 </html>
